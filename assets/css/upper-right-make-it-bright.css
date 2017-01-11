@@ -131,6 +131,7 @@
 @media (max-width:768px) {
 	.brightness-over-9000 .upper-right-widget {
 		transform: scale(.9);
+		text-align: center;
 	}
 	/*.brightness-over-9000 .upper-right-widget + .upper-right-widget { margin-top: 10px; }*/
 }
