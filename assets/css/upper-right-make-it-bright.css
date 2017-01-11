@@ -200,6 +200,7 @@
 	.upper-right-core-ui .call-to-action {
 		width: 100%;
 		margin: 0 0 10px !important;
+		text-align: center;
 	}
 
 	.upper-right-core-ui .call-to-action i {

@@ -11,7 +11,7 @@
 	 * @wordpress-plugin
 	 * Plugin Name: Genesis - Upper Right Make It Bright
 	 * Description: This plugin enables a widget area above the header on most Genesis Themes. Note: This requires a Genesis Child Theme to work.
-	 * Version:     1.1.1
+	 * Version:     1.1.2
 	 * Author:      RedbrickDigital.net
 	 * Text Domain: genesis-upper-right
 	 * License:     GPL-2.0+
