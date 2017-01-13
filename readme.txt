@@ -2,8 +2,8 @@
 Contributors: RedbrickDigital
 Tags: Genesis, Widget Area, Sidebar
 Requires at least: 3.5
-Tested up to: 4.7.0
-Stable tag: 1.1.2.1
+Tested up to: 4.7.1
+Stable tag: 1.1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,9 @@ This plugin enables a widget area above the header on most Genesis Themes. Note:
 3. Place a widget in the Upper Right, Make It Bright widget area to active the sidebar.
 
 == Changelog ==
+= 1.1.2.1 =
+* Allowed "Directions" link in CTA button to be removed.
+
 = 1.1.2 =
 * Some themes had uncentered mobile CTA buttons.
 

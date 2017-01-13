@@ -23,8 +23,9 @@
 				//'text_align'	=> 'right',
 				'title'						=> 'Call Today:',
 				'address'					=> genesis_get_option( 'lmp_gen_street_address', 'website-genesis-options' ) .' '. genesis_get_option( 'lmp_gen_street_address_two', 'website-genesis-options') .', '. genesis_get_option( 'lmp_gen_city', 'website-genesis-options') .', '. genesis_get_option( 'lmp_gen_state', 'website-genesis-options') .' '. genesis_get_option( 'lmp_gen_zip_code', 'website-genesis-options'),
-				'company_name'				=> genesis_get_option( 'lmp_gen_company_name', 'website-genesis-options' ),
+				//'company_name'			=> genesis_get_option( 'lmp_gen_company_name', 'website-genesis-options' ),
 				'phone_number'				=> genesis_get_option( 'lmp_gen_phone', 'website-genesis-options' ),
+				'hide_directions'			=> 0,
 				'click_to_call_text'		=> 'Call Today',
 				'click_for_directions_text'	=> 'Directions',
 			);
@@ -73,8 +74,10 @@
 					<div class="upper-right-call-to-action">
 						<div class="show-lg block large"><?php echo $title; ?> <strong><?php echo $phone_number; ?></strong></div>
 						<div class="hide-lg block">
-							<a class="call-to-action button dib" href="tel:<?php echo $_phone_number; ?>"><span><i class="fa fa-2x fa-mobile"></i><?php echo $click_to_call_text; ?></span></a>
-							<a class="call-to-action button dib" href="https://www.google.com/maps/place/<?php echo $_google_maps; ?>"><span><i class="fa fa-2x fa-map-marker"></i><?php echo $click_for_directions_text; ?></span></a>
+							<a class="call-to-action button dib" <?php if( $hide_directions == true ){ echo 'style="margin-right: 0 !important;"'; } ?> href="tel:<?php echo $_phone_number; ?>"><span><i class="fa fa-2x fa-mobile"></i><?php echo $click_to_call_text; ?></span></a>
+							<?php if( $hide_directions != true ){ ?>
+								<a class="call-to-action button dib" href="https://www.google.com/maps/place/<?php echo $_google_maps; ?>"><span><i class="fa fa-2x fa-map-marker"></i><?php echo $click_for_directions_text; ?></span></a>
+							<?php } ?>
 						</div>
 						<!--<div class=""><a href="tel:1234567890">Call Today</a>-->
 					</div>
@@ -108,19 +111,22 @@
 				<div style="clear: both;"></div>
 
 				<p style="width: 47.5%; margin: 0 -4px 0 0; display: inline-block; margin-bottom: 1em;">
-					<strong><label for="<?php echo $this->get_field_id( 'company_name' ); ?>"><?php _e( 'Company Name:' ); ?></label></strong><br />
-					<input class="widefat" id="<?php echo $this->get_field_id( 'company_name' ); ?>" name="<?php echo $this->get_field_name( 'company_name' ); ?>" type="text" value="<?php echo esc_attr( $company_name ); ?>" />
-				</p>
-				<p style="width: 47.5%; margin: 0 -4px 0 5%; display: inline-block; margin-bottom: 1em;">
 					<strong><label for="<?php echo $this->get_field_id( 'click_to_call_text' ); ?>"><?php _e( 'Call Today Label:' ); ?></label></strong><br />
 					<input class="widefat" id="<?php echo $this->get_field_id( 'click_to_call_text' ); ?>" name="<?php echo $this->get_field_name( 'click_to_call_text' ); ?>" type="text" value="<?php echo esc_attr( $click_to_call_text ); ?>" />
+				</p>
+
+				<p style="width: 47.5%; margin: 0 -4px 0 5%; display: inline-block; margin-bottom: 1em;">
+					<strong><label for="<?php echo $this->get_field_id( 'click_for_directions_text' ); ?>"><?php _e( 'Directions Label:' ); ?></label></strong><br />
+					<input class="widefat" id="<?php echo $this->get_field_id( 'click_for_directions_text' ); ?>" name="<?php echo $this->get_field_name( 'click_for_directions_text' ); ?>" type="text" value="<?php echo esc_attr( $click_for_directions_text ); ?>" />
 				</p>
 
 				<div style="clear: both;"></div>
 
 				<p style="width: 47.5%; margin: 0 -4px 0 0; display: inline-block; margin-bottom: 1em;">
-					<strong><label for="<?php echo $this->get_field_id( 'click_for_directions_text' ); ?>"><?php _e( 'Directions Label:' ); ?></label></strong><br />
-					<input class="widefat" id="<?php echo $this->get_field_id( 'click_for_directions_text' ); ?>" name="<?php echo $this->get_field_name( 'click_for_directions_text' ); ?>" type="text" value="<?php echo esc_attr( $click_for_directions_text ); ?>" />
+					<strong>
+						<label for="<?php echo $this->get_field_id( 'hide_directions' ); ?>"><?php _e( 'Hide Directions Button:' ); ?></label><br />
+						<input class="widefat" id="<?php echo $this->get_field_id( 'hide_directions' ); ?>" name="<?php echo $this->get_field_name( 'hide_directions' ); ?>" type="checkbox" <?php if( $hide_directions == true ){ echo 'checked="checked"'; } ?> value="1" />
+					</strong>
 				</p>
 				<p style="width: 47.5%; margin: 0 -4px 0 5%; display: inline-block; margin-bottom: 1em;">
 					<strong><label for="<?php echo $this->get_field_id( 'address' ); ?>"><?php _e( 'Street Address:' ); ?></label></strong><br />
