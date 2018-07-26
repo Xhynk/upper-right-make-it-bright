@@ -60,11 +60,20 @@
 	*/
 	function upper_right_make_it_bright_widgets() {
 		if( function_exists( 'genesis_widget_area' ) ){
+			$columns = count_sidebar_widgets( 'upper-right-make-it-bright' );
 			genesis_widget_area( 'upper-right-make-it-bright', array(
-				'before' => '<div class="site-header"><div id="brightness-over-9000" class="brightness-over-9000"><div class="row">',
+				'before' => '<div class="site-header"><div id="brightness-over-9000" class="brightness-over-9000"><div class="grid" columns="'. $columns .'">',
 				'after'  => '</div><div class="clear-both"></div></div>',
 			) );
 		}
+	}
+
+	function count_sidebar_widgets( $sidebar_id, $echo = true ) {
+	    $the_sidebars = wp_get_sidebars_widgets();
+	    if( !isset( $the_sidebars[$sidebar_id] ) )
+	        return __( 'Invalid sidebar ID' );
+
+	    return count( $the_sidebars[$sidebar_id] );
 	}
 
 	/**
@@ -137,36 +146,36 @@
 			}
 
 			if( $sidebar_widgets == 1 ){
-				$col_classes = 'col-lg-12 col-md-12 col-sm-12 text-lg-right text-md-center text-sm-center ';
+				$col_classes = 'text-lg-right text-md-center text-sm-center';
 			}
 
 			if( $sidebar_widgets == 2 ){
 				if( $widget_counter == 1 ){
-					$col_classes = 'col-lg-6 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center ';
+					$col_classes = 'text-lg-center text-md-center text-sm-center ';
 				} else if( $widget_counter == 2 ){
-					$col_classes = 'col-lg-6 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center ';
+					$col_classes = 'text-lg-center text-md-center text-sm-center ';
 				}
 			}
 
 			if( $sidebar_widgets == 3 ){
 				if( $widget_counter == 1 ){
-					$col_classes = 'col-lg-4 col-md-6 col-sm-12 text-lg-left text-md-center text-sm-center ';
+					$col_classes = 'text-lg-left text-md-center text-sm-center ';
 				} else if( $widget_counter == 2 ){
-					$col_classes = 'col-lg-4 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center ';
+					$col_classes = 'text-lg-center text-md-center text-sm-center ';
 				} else if( $widget_counter == 3 ){
-					$col_classes = 'col-lg-4 col-md-12 col-sm-12 text-lg-right text-md-center text-sm-center ';
+					$col_classes = 'text-lg-right text-md-center text-sm-center ';
 				}
 			}
 
 			if( $sidebar_widgets == 4 ){
 				if( $widget_counter == 1 ){
-					$col_classes = 'col-lg-3 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center ';
+					$col_classes = 'text-lg-center text-md-center text-sm-center ';
 				} else if( $widget_counter == 2 ){
-					$col_classes = 'col-lg-3 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center ';
+					$col_classes = 'text-lg-center text-md-center text-sm-center ';
 				} else if( $widget_counter == 3 ){
-					$col_classes = 'col-lg-3 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center ';
+					$col_classes = 'text-lg-center text-md-center text-sm-center ';
 				} else if( $widget_counter == 4 ){
-					$col_classes = 'col-lg-3 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center ';
+					$col_classes = 'text-lg-center text-md-center text-sm-center ';
 				}
 			}
 
@@ -174,7 +183,10 @@
 			$class_order		= "upper-right-widget-$widget_counter ";
 
 	        $params[0]['before_widget'] = upper_right_make_it_bright_replace_first( 'class="', 'class="upper-right-widget '. $class_order . $col_classes, $params[0]['before_widget'] );
+	        $params[0]['before'] = str_replace( '{COLUMNS}', $sidebar_widgets, $params[0]['before'] );
 	    }
+
+
 	    return $params;
 	}
 
